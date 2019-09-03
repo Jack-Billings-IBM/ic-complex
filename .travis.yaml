@@ -10,7 +10,7 @@ before_install:
   - sudo apt-get install -y jq
   - curl -sL https://ibm.biz/idt-installer | bash
   - ibmcloud login --apikey vVhU4H2-OHWPAZF26lm4fqcvzYKBlm9zGgVl_uyWbnqd -a cloud.ibm.com -r us-south -g Default
-  - ibmcloud plugin update kubernetes-service
+  # - ibmcloud plugin update kubernetes-service
   # - ibmcloud ks cluster-config --cluster blklre0d0semmfdk0fc0
   # - export KUBECONFIG=/Users/Jack.Billings@ibm.com/.bluemix/plugins/container-service/clusters/blklre0d0semmfdk0fc0/kube-config-hou02-fib-cluster.yml
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
