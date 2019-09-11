@@ -23,7 +23,8 @@ spec:
             - containerPort: 5432
           volumeMounts:
             - name: postgres-storage
-              mountPath: /var/lib/postgresql/data
+              mountPath: https://s3.us-south.cloud-object-storage.appdomain.cloud
+              # mountPath: /var/lib/postgresql/data
               subPath: postgres
           env: 
             - name: PGPASSWORD
@@ -31,3 +32,4 @@ spec:
                 secretKeyRef:
                   name: pgpassword
                   key: PGPASSWORD
+      # restartPolicy: Always

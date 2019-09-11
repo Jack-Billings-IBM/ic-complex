@@ -1,10 +1,18 @@
-apiVersion: v1
 kind: PersistentVolumeClaim
+apiVersion: v1
 metadata:
   name: database-persistent-volume-claim
+  namespace: default
+  annotations:
+    ibm.io/auto-create-bucket: "false"
+    ibm.io/auto-delete-bucket: "false"
+    ibm.io/bucket: "complex-bucket"
+    ibm.io/secret-name: "cos-access"
+    ibm.io/endpoint: "https://s3.us-south.cloud-object-storage.appdomain.cloud"
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
-      storage: 2Gi
+      storage: 200Mi # Enter a fictitious value
+  storageClassName: ibmc-s3fs-standard-regional

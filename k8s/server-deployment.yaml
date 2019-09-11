@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: jfbill/multi-server
+          image: us.icr.io/jb-namespace/fib-repo:multi-server
           ports:
             - containerPort: 5000
           env:

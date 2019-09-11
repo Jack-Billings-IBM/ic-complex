@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: jfbill/multi-client
+          image: us.icr.io/jb-namespace/fib-repo:multi-client
           ports:
             - containerPort: 3000

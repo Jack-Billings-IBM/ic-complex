@@ -6,33 +6,33 @@ env:
     - SHA=$(git rev-parse HEAD)
 language: ruby
 before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y jq
+  # - sudo apt-get -qq update
+  # - sudo apt-get install -y jq
   - curl -sL https://ibm.biz/idt-installer | bash
   - ibmcloud login --apikey vVhU4H2-OHWPAZF26lm4fqcvzYKBlm9zGgVl_uyWbnqd -a cloud.ibm.com -r us-south -g Default
   - ibmcloud plugin update kubernetes-service
-  # - ibmcloud ks cluster-config --cluster blklre0d0semmfdk0fc0
-  # - export KUBECONFIG=/Users/Jack.Billings@ibm.com/.bluemix/plugins/container-service/clusters/blklre0d0semmfdk0fc0/kube-config-hou02-fib-cluster.yml
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t us.icr.io/jb-namespace/fib -f ./client/Dockerfile.dev ./client
-install:
- - gem install yaml-lint
+  - ibmcloud ks cluster-config --cluster blrb3vkd01blsvng8atg
+  - export KUBECONFIG=/Users/Jack.Billings@ibm.com/.bluemix/plugins/container-service/clusters/blrb3vkd01blsvng8atg/kube-config-dal10-complex-cluster.yml
+  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  # - docker build -t us.icr.io/jb-namespace/fib-repo:multi-client -f ./client/Dockerfile.dev ./client
+# install:
+#  - gem install yaml-lint
 script:
- - yaml-lint $(find . -name '*.yml')
- - |
-    (
-      JSON=$(find . -name '*.json')
-      RC=0
-      for FILE in $JSON; do
-        echo "Checking content of $FILE"
-        if ! jq . $FILE >/dev/null ; then
-          echo "Invalid JSON: $FILE"
-          RC=1
-        fi
-      done
-      exit $RC
-    )
- - docker run -e CI=true us.icr.io/jb-namespace/fib npm run test
+#  - yaml-lint $(find . -name '*.yml')
+#  - |
+#     (
+#       JSON=$(find . -name '*.json')
+#       RC=0
+#       for FILE in $JSON; do
+#         echo "Checking content of $FILE"
+#         if ! jq . $FILE >/dev/null ; then
+#           echo "Invalid JSON: $FILE"
+#           RC=1
+#         fi
+#       done
+#       exit $RC
+#     )
+ - docker run -e CI=true us.icr.io/jb-namespace/fib:multi-client npm run test
 
 deploy:
   provider: script
