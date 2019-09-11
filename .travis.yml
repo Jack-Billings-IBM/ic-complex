@@ -4,7 +4,7 @@ services:
 env:
   global:
     - SHA=$(git rev-parse HEAD)
-language: ruby
+# language: ruby
 before_install:
   # - sudo apt-get -qq update
   # - sudo apt-get install -y jq
