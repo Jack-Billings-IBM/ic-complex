@@ -13,8 +13,8 @@ before_install:
   - ibmcloud plugin update kubernetes-service
   - ibmcloud ks cluster-config --cluster blrb3vkd01blsvng8atg
   - export KUBECONFIG=/Users/Jack.Billings@ibm.com/.bluemix/plugins/container-service/clusters/blrb3vkd01blsvng8atg/kube-config-dal10-complex-cluster.yml
-  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  # - docker build -t us.icr.io/jb-namespace/fib-repo:multi-client -f ./client/Dockerfile.dev ./client
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t jfbill/multi-client -f ./client/Dockerfile.dev ./client
 # install:
 #  - gem install yaml-lint
 script:
@@ -32,7 +32,7 @@ script:
 #       done
 #       exit $RC
 #     )
- - docker run -e CI=true us.icr.io/jb-namespace/fib:multi-client npm run test
+ - docker run -e CI=true jfbill/multi-client npm run test
 
 deploy:
   provider: script
