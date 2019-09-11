@@ -5,7 +5,7 @@ env:
   global:
     - SHA=$(git rev-parse HEAD)
 before_install:
-  - curl -sL https://ibm.biz/idt-installer | bash
+  - curl -sL https://ibm.biz/idt-installer | bash /dev/null;
   - ibmcloud login --apikey vVhU4H2-OHWPAZF26lm4fqcvzYKBlm9zGgVl_uyWbnqd -a cloud.ibm.com -r us-south -g Default
   - ibmcloud plugin update kubernetes-service
   - ibmcloud ks cluster-config --cluster blrb3vkd01blsvng8atg
