@@ -6,7 +6,7 @@ services:
 #     - SHA=$(git rev-parse HEAD)
 before_install:
   # - curl -sL https://ibm.biz/idt-installer | bash 
-  # - ibmcloud login --apikey vVhU4H2-OHWPAZF26lm4fqcvzYKBlm9zGgVl_uyWbnqd -a cloud.ibm.com -r us-south -g Default
+  # - ibmcloud login --apikey $IBMCLOUD_API_KEY -a cloud.ibm.com -r us-south -g Default
   # - ibmcloud plugin update kubernetes-service
   # - ibmcloud ks cluster-config --cluster blrb3vkd01blsvng8atg
   # - export KUBECONFIG=/Users/Jack.Billings@ibm.com/.bluemix/plugins/container-service/clusters/blrb3vkd01blsvng8atg/kube-config-dal10-complex-cluster.yml
@@ -21,3 +21,5 @@ script:
 #   script: sh ./deploy.sh
 #   on:
 #     branch: master
+
+# kubectl connecting to localhost instead of ibm cloud cluster
