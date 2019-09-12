@@ -8,6 +8,8 @@ before_install:
   - curl -sL https://ibm.biz/idt-installer | bash 
   - ibmcloud login --apikey $IBMCLOUD_API_KEY -a cloud.ibm.com -r us-south -g Default
   - ibmcloud plugin update kubernetes-service
+  - ibmcloud ks cluster-config --cluster blrb3vkd01blsvng8atg
+  - export KUBECONFIG=/Users/Jack.Billings@ibm.com/.bluemix/plugins/container-service/clusters/blrb3vkd01blsvng8atg/kube-config-dal10-complex-cluster.yml
   - kubectl cluster-info
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t jfbill/multi-client -f ./client/Dockerfile.dev ./client
