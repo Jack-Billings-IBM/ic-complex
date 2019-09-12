@@ -1,25 +1,23 @@
 sudo: required
 services:
   - docker
-# env:
-#   global:
-#     - SHA=$(git rev-parse HEAD)
+env:
+  global:
+    - SHA=$(git rev-parse HEAD)
 before_install:
-  # - curl -sL https://ibm.biz/idt-installer | bash 
-  # - ibmcloud login --apikey $IBMCLOUD_API_KEY -a cloud.ibm.com -r us-south -g Default
-  # - ibmcloud plugin update kubernetes-service
-  # - ibmcloud ks cluster-config --cluster blrb3vkd01blsvng8atg
-  # - export KUBECONFIG=/Users/Jack.Billings@ibm.com/.bluemix/plugins/container-service/clusters/blrb3vkd01blsvng8atg/kube-config-dal10-complex-cluster.yml
-  # - kubectl cluster-info
+  - curl -sL https://ibm.biz/idt-installer | bash 
+  - ibmcloud login --apikey $IBMCLOUD_API_KEY -a cloud.ibm.com -r us-south -g Default
+  - ibmcloud plugin update kubernetes-service
+  - kubectl cluster-info
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t jfbill/multi-client -f ./client/Dockerfile.dev ./client
 script:
  - docker run -e CI=true jfbill/multi-client npm run test
 
-# deploy:
-#   provider: script
-#   script: sh ./deploy.sh
-#   on:
-#     branch: master
+deploy:
+  provider: script
+  script: sh ./deploy.sh
+  on:
+    branch: master
 
 # kubectl connecting to localhost instead of ibm cloud cluster
