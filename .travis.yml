@@ -11,10 +11,10 @@ before_install:
   - ibmcloud ks cluster config --cluster $CLUSTER
   - export KUBECONFIG=/home/travis/.bluemix/plugins/container-service/clusters/$CLUSTER/kube-config-dal10-complex-cluster.yml
   - kubectl cluster-info
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t jfbill/multi-client -f ./client/Dockerfile.dev ./client
+  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t us.icr.io/jb-namespace/fib-repo:multi-client -f ./client/Dockerfile.dev ./client
 script:
- - docker run -e CI=true jfbill/multi-client npm run test
+ - docker run -e CI=true us.icr.io/jb-namespace/fib-repo:multi-client npm run test
 
 deploy:
   provider: script
