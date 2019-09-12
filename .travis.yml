@@ -9,8 +9,7 @@ before_install:
   - ibmcloud login --apikey $IBMCLOUD_API_KEY -a cloud.ibm.com -r us-south -g Default
   - ibmcloud plugin update kubernetes-service
   - ibmcloud ks cluster config --cluster $CLUSTER
-  - export KUBECONFIG=/Users/Jack.Billings@ibm.com/.bluemix/plugins/container-service/clusters/$CLUSTER/kube-config-dal10-complex-cluster.yml
-  - export
+  - export KUBECONFIG=/home/travis/.bluemix/plugins/container-service/clusters/$CLUSTER/kube-config-dal10-complex-cluster.yml
   - kubectl cluster-info
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t jfbill/multi-client -f ./client/Dockerfile.dev ./client
